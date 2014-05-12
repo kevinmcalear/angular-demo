@@ -7,15 +7,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container"
-    ng-init="names=[{name:'Dave',city:'Phonix'}, {name:'Napur',city:'Toledo'}, {name:'Heedy',city:'Berlin'}, {name:'Shriva',city:'New York City'}]">
+  <div class="container" ng-controller="SimpleController">
     Name: <input type="text" ng-model="name"> {{ name | uppercase }}
     <h3>Looping with the ng-repeat Directive</h3>
     <ul>
-      <li ng-repeat="name in names | filter:name |orderBy:'city'">{{ name.name }} - {{ name.city }}</li>
+      <li ng-repeat="cust in customers | filter:name |orderBy:'city'">{{ cust.name }} - {{ cust.city }}</li>
     </ul>
   </div>
-
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <script type="text/javascript">
+    function SimpleController($scope) {
+      $scope.customers = [
+      {name:'Dave', city:'Phonix'},
+      {name:'Napur', city:'Toledo'},
+      {name:'Heedy', city:'Berlin'},
+      {name:'Shriva', city:'New York City'}
+      ]
+    }
+  </script>
 </body>
 </html>
