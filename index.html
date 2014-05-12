@@ -7,16 +7,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" ng-controller="SimpleController">
-    Name: <input type="text" ng-model="name"> {{ name | uppercase }}
-    <h3>Looping with the ng-repeat Directive</h3>
-    <ul>
-      <li ng-repeat="cust in customers | filter:name |orderBy:'city'">{{ cust.name }} - {{ cust.city }}</li>
-    </ul>
+  <div>
+    <div ng-view></div>
   </div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
   <script type="text/javascript">
     var demoApp = angular.module('demoApp', []);
+
+    demoApp.config(function ($routeProvider) {
+      $routeProvider
+        .when('/',
+          {
+            controller: 'SimpleController',
+            templateUrl: 'partials/view1.html'
+          })
+        .when('/view2',
+          {
+            controller: 'SimpleController',
+            templateUrl: 'partials/view2.html'
+          })
+        .otherwise({ redirectTo: '/' });
+    });
 
     demoApp.controller('SimpleController', function ($scope) {
       $scope.customers = [
@@ -25,6 +36,11 @@
         {name:'Heedy', city:'Berlin'},
         {name:'Shriva', city:'New York City'}
       ]
+
+      $scope.addCustomer = function () {
+        $scope.customers.push(
+          {name: $scope.newCustomer.name, city: $scope.newCustomer.city});
+      };
     });
   </script>
 </body>
