@@ -8,11 +8,11 @@
 </head>
 <body>
   <div class="container"
-    ng-init="names=['Dave', 'Napur', 'Heedy', 'Shriva']">
+    ng-init="names=[{name:'Dave',city:'Phonix'}, {name:'Napur',city:'Toledo'}, {name:'Heedy',city:'Berlin'}, {name:'Shriva',city:'New York City'}]">
     Name: <input type="text" ng-model="name"> {{ name | uppercase }}
     <h3>Looping with the ng-repeat Directive</h3>
     <ul>
-      <li ng-repeat="name in names | filter:name">{{ name }}</li>
+      <li ng-repeat="name in names | filter:name |orderBy:'city'">{{ name.name }} - {{ name.city }}</li>
     </ul>
   </div>
 
