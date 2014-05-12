@@ -9,10 +9,10 @@
 <body>
   <div class="container"
     ng-init="names=['Dave', 'Napur', 'Heedy', 'Shriva']">
-    Name: <input type="text" ng-model="name"> {{ name }}
+    Name: <input type="text" ng-model="name"> {{ name | uppercase }}
     <h3>Looping with the ng-repeat Directive</h3>
     <ul>
-      <li ng-repeat="name in names"> {{ name }}</li>
+      <li ng-repeat="name in names | filter:name">{{ name }}</li>
     </ul>
   </div>
 
